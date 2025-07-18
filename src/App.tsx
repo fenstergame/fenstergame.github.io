@@ -245,7 +245,7 @@ const App: React.FC = () => {
 
         setCurrentCard(null);
         setGameLocked(false);
-        setMessage(`Choose a card.`);
+        setMessage(`Choose a card!`);
       }, 2000);
     }
   };
@@ -361,7 +361,7 @@ const App: React.FC = () => {
           setCorrectGuesses(0);
           setCurrentPlayer((prev) => (prev + 1) % players.length);
           setCurrentCard(null);
-          setMessage(`Choose a card.`);
+          setMessage(`Choose a card!`);
         }}
         style={{
           marginTop: 20,
