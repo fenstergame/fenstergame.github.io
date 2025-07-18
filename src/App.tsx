@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./App.css";
 import { Button, Input, List, Modal, Space, Typography } from "antd";
 import backgroundImage from './img/background.png';
@@ -30,7 +30,7 @@ function getCardImage(value: string, suit: string): string {
 }
 
 function cardToNumber(value: string): number {
-  if (value === "A") return 14; // Ace is highest
+  if (value === "A") return 14;
   if (value === "K") return 13;
   if (value === "Q") return 12;
   if (value === "J") return 11;
@@ -67,12 +67,16 @@ const cornerIds = [0, 4, 16, 20];
 const PlayerModal: React.FC<{ onSubmit: (players: string[]) => void }> = ({ onSubmit }) => {
   const [input, setInput] = useState("");
   const [players, setPlayers] = useState<string[]>([]);
+  const inputRef = useRef<Input>(null);
 
   const addPlayer = () => {
     const trimmed = input.trim();
     if (trimmed && !players.includes(trimmed)) {
       setPlayers([...players, trimmed]);
       setInput("");
+      setTimeout(() => {
+        inputRef.current?.input?.focus();
+      }, 0);
     }
   };
 
@@ -81,6 +85,7 @@ const PlayerModal: React.FC<{ onSubmit: (players: string[]) => void }> = ({ onSu
       <Space style={{ width: "100%", justifyContent: "center" }}>
         <Button type="primary" disabled={players.length === 0} onClick={() => onSubmit(players)}>Start</Button>
         <Input
+          ref={inputRef}
           placeholder="Player name"
           value={input}
           onChange={(e) => setInput(e.target.value)}
@@ -119,7 +124,7 @@ const App: React.FC = () => {
 
   const [{ cards }, setGameState] = useState(initialState);
   const [currentCard, setCurrentCard] = useState<CardType | null>(null);
-  const [message, setMessage] = useState("Choose a card to start!");
+  const [message, setMessage] = useState("Wähle zu Beginn eine Karte aus!");
 
   const [players, setPlayers] = useState<string[]>([]);
   const [currentPlayer, setCurrentPlayer] = useState(0);
@@ -216,7 +221,6 @@ const App: React.FC = () => {
       } else {
         setMessage("Correct! Continue or pass.");
       }
-
     } else {
       const connected = findConnectedFaceUp(id);
       setMessage(`Wrong! Drink ${connected.length} sips!`);
@@ -245,7 +249,7 @@ const App: React.FC = () => {
 
         setCurrentCard(null);
         setGameLocked(false);
-        setMessage(`Choose a card!`);
+        setMessage(`Wähle eine Karte`);
       }, 2000);
     }
   };
@@ -276,7 +280,7 @@ const App: React.FC = () => {
       }}
     >
       <h1>🍻 Fenster 🍻</h1>
-      <p><strong>Current Player:</strong> {players[currentPlayer]}</p>
+      <p><strong>Am Zug:</strong> {players[currentPlayer]}</p>
       <p>{message}</p>
 
       <div className="board">
@@ -300,10 +304,8 @@ const App: React.FC = () => {
                 }
                 return (
                   <div className="overlay">
-                    {/* ↑ */}
-                    {/* ↓ */}
-                    <button onClick={() => handleGuess(c.id, "higher")}>Higher</button>
-                    <button onClick={() => handleGuess(c.id, "lower")}>Lower</button>
+                    <button onClick={() => handleGuess(c.id, "higher")}>Höher</button>
+                    <button onClick={() => handleGuess(c.id, "lower")}>Niedriger</button>
                   </div>
                 );
               }
@@ -312,8 +314,8 @@ const App: React.FC = () => {
             if (innerEdgeIds.includes(c.id) && allOuterTurned()) {
               return (
                 <div className="overlay">
-                  <button onClick={() => handleGuess(c.id, "red")}>🔴 Red</button>
-                  <button onClick={() => handleGuess(c.id, "black")}>⚫ Black</button>
+                  <button onClick={() => handleGuess(c.id, "red")}>🔴 Rot</button>
+                  <button onClick={() => handleGuess(c.id, "black")}>⚫ Schwarz</button>
                 </div>
               );
             }
@@ -361,7 +363,7 @@ const App: React.FC = () => {
           setCorrectGuesses(0);
           setCurrentPlayer((prev) => (prev + 1) % players.length);
           setCurrentCard(null);
-          setMessage(`Choose a card!`);
+          setMessage(`Wähle eine Karte.`);
         }}
         style={{
           marginTop: 20,
@@ -371,7 +373,7 @@ const App: React.FC = () => {
           borderColor: "#fff",
         }}
       >
-        <ArrowRightOutlined /> Next Player
+        <ArrowRightOutlined /> Nächster Spieler
       </Button>
     </div>
   );

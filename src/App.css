@@ -5,7 +5,6 @@ html,
   padding: 0;
   height: 100%;
   width: 100%;
-  overflow: hidden; /* Prevent accidental scrollbars */
 }
 
 .container {
@@ -32,14 +31,13 @@ html,
 
 /* Compact Headers */
 .main-game h1 {
-  margin-top: 4px;
-  margin-bottom: 4px;
+  margin: 10px 0;
+  margin-top: 0px;
   font-size: 24px;
 }
 
 .main-game p {
-  margin-top: 2px;
-  margin-bottom: 2px;
+  margin: 5px 0;
   font-size: 14px;
 }
 
@@ -81,11 +79,6 @@ html,
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-
-  /* Center content (image and overlay) */
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .card-front {
@@ -110,20 +103,22 @@ html,
 /* Action Overlay */
 .overlay {
   position: absolute;
-  width: 80%; /* Overlay scales with the visible card */
-  height: 90%; /* Slightly smaller to avoid overlap with corners */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background: rgba(0, 0, 0, 0.5);
   border-radius: 8px;
-  padding: 8px;
+  padding: 8px; /* Small padding to prevent content from touching the edges */
   box-sizing: border-box;
 }
 
 .overlay button {
-  width: 90%; /* Buttons are equal width inside overlay */
+  width: 90%; /* Buttons are 80% of the card width */
   margin: 4px 0; /* Vertical spacing between buttons */
   padding: 6px 0; /* Height control without affecting width */
   font-size: 12px;
@@ -147,21 +142,17 @@ html,
   }
 
   .overlay button {
-    width: 80%; /* Still proportional to overlay */
+    width: 80%; /* Still 80% of card width on mobile */
     padding: 4px 0;
     font-size: 10px;
   }
 
   .main-game h1 {
     font-size: 20px;
-    margin-top: 2px;
-    margin-bottom: 2px;
   }
 
   .main-game p {
     font-size: 12px;
-    margin-top: 1px;
-    margin-bottom: 1px;
   }
 }
 
@@ -173,11 +164,16 @@ html,
   align-self: center;
 }
 
-/* Fit game to viewport */
 .main-game {
-  min-height: 100dvh; /* Dynamic viewport height for mobile */
+  min-height: 100vh; /* Use dynamic viewport height for mobile safety */
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: center; /* Default: center */
   box-sizing: border-box;
+}
+
+@media (max-width: 500px) {
+  .main-game {
+    justify-content: flex-start; /* On mobile: align to top */
+  }
 }
