@@ -5,5 +5,5 @@ import react from "@vitejs/plugin-react-swc";
 //asdfasdfsadf
 export default defineConfig({
   plugins: [react()],
-  base: "/fenstergame.github.io/",
+  base: "https://fenstergame.github.io/",
 });
