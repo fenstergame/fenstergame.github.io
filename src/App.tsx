@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import "./App.css";
-import { Button, Input, List, Modal, Space, Typography } from "antd";
+import { Button, Input, List, Modal, Typography } from "antd";
 import backgroundImage from './img/background.png';
 import { ArrowRightOutlined } from "@ant-design/icons";
 import type { InputRef } from "antd";
@@ -84,7 +84,7 @@ const PlayerModal: React.FC<{ onSubmit: (players: string[]) => void }> = ({ onSu
 
   return (
     <Modal open={true} title="Enter Player Names" footer={null} closable={false} centered width={300}>
-      <Space style={{ width: "100%", justifyContent: "center" }}>
+      {/* <Space style={{ width: "100%", justifyContent: "center" }}>
         <Button type="primary" disabled={players.length === 0} onClick={() => onSubmit(players)}>Start</Button>
         <Input
           ref={inputRef}
@@ -95,7 +95,34 @@ const PlayerModal: React.FC<{ onSubmit: (players: string[]) => void }> = ({ onSu
           style={{ width: 150 }}
         />
         <Button onClick={addPlayer}>+</Button>
-      </Space>
+      </Space> */}
+      <div style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        gap: "8px",
+        flexShrink: 0, // Prevent shrinking that causes layout bugs on mobile
+      }}>
+        <Button onClick={addPlayer}>+</Button>
+        <Input
+          ref={inputRef}
+          placeholder="Player name"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onPressEnter={addPlayer}
+          style={{
+            width: "150px",
+            flexShrink: 0, // Prevents it from shrinking on small screens
+          }}
+        />
+        <Button
+          type="primary"
+          disabled={players.length === 0}
+          onClick={() => onSubmit(players)}
+        >
+          Start
+        </Button>
+      </div>
 
       {players.length > 0 && (
         <List
