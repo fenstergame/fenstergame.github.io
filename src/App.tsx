@@ -275,7 +275,7 @@ const App: React.FC = () => {
         color: "white"
       }}
     >
-      <h1>Fenster 🍻</h1>
+      <h1>🍻 Fenster 🍻</h1>
       <p><strong>Current Player:</strong> {players[currentPlayer]}</p>
       <p>{message}</p>
 
@@ -300,8 +300,10 @@ const App: React.FC = () => {
                 }
                 return (
                   <div className="overlay">
-                    <button onClick={() => handleGuess(c.id, "higher")}>↑ Higher</button>
-                    <button onClick={() => handleGuess(c.id, "lower")}>↓ Lower</button>
+                    {/* ↑ */}
+                    {/* ↓ */}
+                    <button onClick={() => handleGuess(c.id, "higher")}>Higher</button>
+                    <button onClick={() => handleGuess(c.id, "lower")}>Lower</button>
                   </div>
                 );
               }
@@ -349,6 +351,7 @@ const App: React.FC = () => {
       </div>
 
       <Button
+        className="next-player-btn"
         type="primary"
         shape="round"
         size="large"
@@ -373,6 +376,5 @@ const App: React.FC = () => {
     </div>
   );
 };
-//a
 
 export default App;
