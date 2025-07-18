@@ -299,8 +299,8 @@ const App: React.FC = () => {
                 if (between) {
                   return (
                     <div className="overlay">
-                      <button onClick={() => handleGuess(c.id, "inside")}>🔼 Inside</button>
-                      <button onClick={() => handleGuess(c.id, "outside")}>🔽 Outside</button>
+                      <button onClick={() => handleGuess(c.id, "inside")}>Inside</button>
+                      <button onClick={() => handleGuess(c.id, "outside")}>Outside</button>
                     </div>
                   );
                 }
