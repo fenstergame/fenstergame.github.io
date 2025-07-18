@@ -118,7 +118,7 @@ html,
 }
 
 .overlay button {
-  width: 90%; /* Buttons are 80% of the card width */
+  width: 100%; /* Buttons are 80% of the card width */
   margin: 4px 0; /* Vertical spacing between buttons */
   padding: 6px 0; /* Height control without affecting width */
   font-size: 12px;
@@ -142,8 +142,8 @@ html,
   }
 
   .overlay button {
-    width: 80%; /* Still 80% of card width on mobile */
-    padding: 4px 0;
+    width: 100%; /* Still 80% of card width on mobile */
+    padding: 2px 0;
     font-size: 10px;
   }
 
