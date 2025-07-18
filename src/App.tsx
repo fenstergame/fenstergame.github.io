@@ -245,7 +245,7 @@ const App: React.FC = () => {
 
         setCurrentCard(null);
         setGameLocked(false);
-        setMessage(`Choose a card`);
+        setMessage(`Choose a card.`);
       }, 2000);
     }
   };
