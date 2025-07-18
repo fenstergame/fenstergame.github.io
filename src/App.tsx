@@ -275,7 +275,7 @@ const App: React.FC = () => {
         color: "white"
       }}
     >
-      <h1>Fenster 🍻</h1>
+      <h1>🍻 Fenster 🍻</h1>
       <p><strong>Current Player:</strong> {players[currentPlayer]}</p>
       <p>{message}</p>
 
