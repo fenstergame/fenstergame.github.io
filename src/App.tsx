@@ -306,8 +306,8 @@ const App: React.FC = () => {
                 }
                 return (
                   <div className="overlay">
-                    <button onClick={() => handleGuess(c.id, "higher")}>Höher</button>
-                    <button onClick={() => handleGuess(c.id, "lower")}>Niedriger</button>
+                    <button onClick={() => handleGuess(c.id, "higher")}>Higher</button>
+                    <button onClick={() => handleGuess(c.id, "lower")}>Lower</button>
                   </div>
                 );
               }
