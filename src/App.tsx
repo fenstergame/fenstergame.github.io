@@ -3,6 +3,8 @@ import "./App.css";
 import { Button, Input, List, Modal, Space, Typography } from "antd";
 import backgroundImage from './img/background.png';
 import { ArrowRightOutlined } from "@ant-design/icons";
+import type { InputRef } from "antd";
+
 
 const cardValues = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
 const suits = ["♠️", "♥️", "♣️", "♦️"];
@@ -67,7 +69,7 @@ const cornerIds = [0, 4, 16, 20];
 const PlayerModal: React.FC<{ onSubmit: (players: string[]) => void }> = ({ onSubmit }) => {
   const [input, setInput] = useState("");
   const [players, setPlayers] = useState<string[]>([]);
-  const inputRef = useRef<Input>(null);
+  const inputRef = useRef<InputRef>(null);
 
   const addPlayer = () => {
     const trimmed = input.trim();
@@ -75,7 +77,7 @@ const PlayerModal: React.FC<{ onSubmit: (players: string[]) => void }> = ({ onSu
       setPlayers([...players, trimmed]);
       setInput("");
       setTimeout(() => {
-        inputRef.current?.input?.focus();
+        inputRef.current?.focus();
       }, 0);
     }
   };
@@ -223,7 +225,7 @@ const App: React.FC = () => {
       }
     } else {
       const connected = findConnectedFaceUp(id);
-      setMessage(`Wrong! Drink ${connected.length} sips!`);
+      setMessage(`Falsch! Trink ${connected.length} Schlucke!`);
       setCorrectGuesses(0);
       setGameLocked(true);
 
