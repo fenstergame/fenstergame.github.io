@@ -333,8 +333,8 @@ const App: React.FC = () => {
                 }
                 return (
                   <div className="overlay">
-                    <button onClick={() => handleGuess(c.id, "higher")}>Drüber</button>
-                    <button onClick={() => handleGuess(c.id, "lower")}>Drunter</button>
+                    <button onClick={() => handleGuess(c.id, "higher")}>▲</button>
+                    <button onClick={() => handleGuess(c.id, "lower")}>▼</button>
                   </div>
                 );
               }
@@ -343,8 +343,8 @@ const App: React.FC = () => {
             if (innerEdgeIds.includes(c.id) && allOuterTurned()) {
               return (
                 <div className="overlay">
-                  <button onClick={() => handleGuess(c.id, "red")}>🔴 Rot</button>
-                  <button onClick={() => handleGuess(c.id, "black")}>⚫ Schwarz</button>
+                  <button onClick={() => handleGuess(c.id, "red")}>Rot</button>
+                  <button onClick={() => handleGuess(c.id, "black")}>Schwarz</button>
                 </div>
               );
             }
